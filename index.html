@@ -1,69 +1,132 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Reflexion</title>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reflexion Strategy Builder</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:#faf8f4;color:#3a3530;line-height:1.6}
-.w{max-width:540px;margin:0 auto;padding:20px}
-.br{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#b8613e;font-weight:600;margin-bottom:14px}
-h1{font-size:26px;font-weight:700;color:#1a2744;margin-bottom:12px}h1 em{color:#b8613e;font-style:italic}
-.p{font-size:14px;color:#8a8480;line-height:1.65;margin-bottom:10px}.p b{color:#3a3530}
-.ob{background:#fff;border:1px solid #ece7df;border-radius:8px;padding:14px 16px;margin:16px 0}
-.ot{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#b8613e;margin-bottom:8px}
-.oi{display:flex;gap:8px;margin-bottom:6px}.on2{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#1a2744;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}.ox{font-size:13px;color:#5a5550;line-height:1.5}
-.lb{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin:20px 0 8px}
-.pg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.pb{padding:12px;border:2px solid #ece7df;border-radius:6px;background:#fff;font-size:15px;font-weight:600;color:#1a2744;cursor:pointer;font-family:inherit;text-align:left;display:flex;align-items:center;gap:8px}
-.pb.a{border-color:#b8613e;background:#b8613e;color:#fff}
-.pd{width:8px;height:8px;border-radius:50%;background:#2d9e5a;flex-shrink:0}
-.pb.a .pd{background:rgba(255,255,255,.5)}
-.b1{margin-top:14px;padding:14px;border:none;border-radius:6px;background:#1a2744;color:#fff;font-size:15px;font-weight:600;width:100%;cursor:pointer;font-family:inherit}
-.b2{margin-top:8px;padding:12px;border:1.5px solid #ece7df;border-radius:6px;background:none;font-size:14px;font-weight:600;color:#8a8480;width:100%;cursor:pointer;font-family:inherit}
-.bt{margin-top:8px;padding:13px;border:none;border-radius:6px;background:#b8613e;color:#fff;font-size:14px;font-weight:600;width:100%;cursor:pointer;font-family:inherit}
-.bt.ok{background:#2d9e5a}
-.hn{text-align:center;color:#bbb;font-size:13px;margin-top:20px}
-.bar{height:3px;background:#ece7df;margin-bottom:4px}.bf{height:100%;background:#b8613e;transition:width .4s;border-radius:3px}
-.tb{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#aaa;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #f0ebe4}
-.tb span:first-child{font-weight:700;color:#b8613e}
-.pg-dots{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
-.pg-dot{width:8px;height:8px;border-radius:50%;background:#ddd;cursor:pointer;border:none;padding:0}
-.pg-dot.a{background:#b8613e}
-.sh{font-size:18px;font-weight:700;color:#b8613e;margin:20px 0 6px;padding-bottom:6px;border-bottom:2px solid #b8613e20}
-.ss{font-size:13px;color:#8a8480;margin-bottom:16px;line-height:1.55}
-.qc{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #f0ebe4}
-.qc:last-child{border-bottom:none}
-.qc h3{font-size:15.5px;font-weight:600;color:#1a2744;margin-bottom:5px;line-height:1.35}
-.qc .cx{font-size:13px;color:#8a8480;margin-bottom:12px;line-height:1.55}
-.os{display:flex;flex-direction:column;gap:7px}
-.op{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;border:1.5px solid #ece7df;border-radius:8px;background:#fff;text-align:left;width:100%;cursor:pointer;font-family:inherit;font-size:14px;transition:all .15s}
-.op:hover{border-color:#ddd}.op.a{border-color:#b8613e;background:#fef8f5}
-.dk{flex-shrink:0;width:18px;height:18px;border:2px solid #ccc;border-radius:3px;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.op.a .dk{border-color:#b8613e}.di{width:8px;height:8px;border-radius:2px;background:#b8613e;display:none}
-.op.a .di{display:block}.ol{font-weight:600;color:#1a2744;line-height:1.35}.od{font-size:12.5px;color:#8a8480;margin-top:2px;line-height:1.45}
-.ab{margin-top:10px;background:none;border:none;font-size:12.5px;color:#9a9590;padding:4px 0;cursor:pointer;font-family:inherit}
-.ab:hover{color:#b8613e}
-.ta{width:100%;padding:10px 12px;border:1.5px solid #ece7df;border-radius:6px;font-size:13.5px;font-family:inherit;line-height:1.55;margin-top:6px;resize:vertical;color:#3a3530}
-.ta:focus{outline:none;border-color:#b8613e}
-.nl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-top:10px}
-.nv{display:flex;gap:8px;margin-top:20px}.nv .sp{flex:1}
-.nb{padding:11px 18px;border:1.5px solid #ece7df;border-radius:6px;background:none;font-size:13px;font-weight:600;color:#8a8480;cursor:pointer;font-family:inherit}
-.np{padding:11px 18px;border:none;border-radius:6px;background:#b8613e;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
-.np:hover{background:#a55535}
-.cb{background:#1a2744;color:#93c5fd;border-radius:8px;padding:12px 14px;font-family:monospace;font-size:11px;word-break:break-all;margin:10px 0;line-height:1.6;max-height:120px;overflow-y:auto}
-.cr{display:flex;flex-direction:column;gap:6px;margin:10px 0}
-.cr label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#aaa}
-.cr input{padding:9px 11px;border:1.5px solid #ece7df;border-radius:6px;font-family:monospace;font-size:11px;color:#3a3530;background:#fff;width:100%}
-.cr input:focus{outline:none;border-color:#b8613e}
-.cr input.ok{border-color:#2d9e5a;background:#f5fdf8}
-.cr input.err{border-color:#e05a5a;background:#fff8f8}
-.div{height:1px;background:#ece7df;margin:20px 0}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
-.chip{font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;border:1.5px solid}
-.chip.y{border-color:#2d9e5a;color:#1a5a2a;background:#f0faf5}
-.chip.n{border-color:#e0dbd4;color:#aaa}
-</style></head><body><div id="app"></div>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#faf8f4;color:#3a3530;line-height:1.6;min-height:100vh}
+.w{max-width:580px;margin:0 auto;padding:24px 20px}
+.brand{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#b8613e;font-weight:700;margin-bottom:16px}
+h1{font-size:28px;font-weight:700;color:#1a2744;margin-bottom:12px}
+h1 em{color:#b8613e;font-style:italic}
+.card{background:#fff;border:1px solid #ece7df;border-radius:10px;padding:16px 18px;margin:16px 0}
+.card-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8613e;margin-bottom:10px}
+.body{font-size:14px;color:#8a8480;line-height:1.65;margin-bottom:10px}
+.body b{color:#3a3530}
+/* Partner grid */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.pbtn{padding:14px 16px;border:2px solid #ece7df;border-radius:8px;background:#fff;font-size:16px;font-weight:600;color:#1a2744;cursor:pointer;font-family:inherit;text-align:left;display:flex;align-items:center;gap:10px;transition:all .15s}
+.pbtn:hover{border-color:#b8613e;background:#fef8f5}
+.pbtn.active{border-color:#b8613e;background:#b8613e;color:#fff}
+.pdot{width:8px;height:8px;border-radius:50%;background:#2d9e5a;flex-shrink:0}
+.pbtn.active .pdot{background:rgba(255,255,255,.6)}
+/* Buttons */
+.btn-p{margin-top:14px;padding:14px;border:none;border-radius:8px;background:#1a2744;color:#fff;font-size:15px;font-weight:600;width:100%;cursor:pointer;font-family:inherit}
+.btn-p:hover{background:#243366}
+.btn-s{margin-top:8px;padding:12px;border:1.5px solid #ece7df;border-radius:8px;background:none;font-size:14px;font-weight:600;color:#8a8480;width:100%;cursor:pointer;font-family:inherit}
+.btn-s:hover{border-color:#ccc;color:#5a5550}
+.btn-a{margin-top:8px;padding:13px;border:none;border-radius:8px;background:#b8613e;color:#fff;font-size:14px;font-weight:600;width:100%;cursor:pointer;font-family:inherit}
+.btn-a:hover{background:#a55535}
+.btn-a.ok{background:#2d9e5a}
+.hint{text-align:center;color:#bbb;font-size:13px;margin-top:16px}
+.divider{height:1px;background:#ece7df;margin:24px 0}
+/* Form progress */
+.pbar-wrap{height:4px;background:#ece7df;border-radius:2px;margin-bottom:6px}
+.pbar-fill{height:100%;background:#b8613e;transition:width .4s;border-radius:2px}
+.pbar-lbl{display:flex;justify-content:space-between;font-size:11px;color:#aaa;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0ebe4}
+.pbar-lbl span:first-child{font-weight:700;color:#b8613e}
+.pdots{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
+.pdot-btn{width:8px;height:8px;border-radius:50%;background:#ddd;cursor:pointer;border:none;padding:0;transition:background .15s}
+.pdot-btn.active{background:#b8613e}
+/* Section */
+.sec-h{font-size:19px;font-weight:700;color:#b8613e;margin:20px 0 6px;padding-bottom:6px;border-bottom:2px solid rgba(184,97,62,.15)}
+.sec-sub{font-size:13px;color:#8a8480;margin-bottom:18px;line-height:1.55}
+/* Question */
+.qblock{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #f0ebe4}
+.qblock:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.qblock h3{font-size:15.5px;font-weight:600;color:#1a2744;margin-bottom:5px;line-height:1.35}
+.qblock .ctx{font-size:13px;color:#8a8480;margin-bottom:12px;line-height:1.55}
+/* Options */
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid #ece7df;border-radius:8px;background:#fff;text-align:left;width:100%;cursor:pointer;font-family:inherit;font-size:14px;transition:all .15s}
+.opt:hover{border-color:#ccc}
+.opt.sel{border-color:#b8613e;background:#fef8f5}
+.opt-box{flex-shrink:0;width:18px;height:18px;border:2px solid #ccc;border-radius:3px;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.opt.sel .opt-box{border-color:#b8613e}
+.opt-chk{width:8px;height:8px;border-radius:2px;background:#b8613e;display:none}
+.opt.sel .opt-chk{display:block}
+.opt-lbl{font-weight:600;color:#1a2744;line-height:1.35}
+.opt-desc{font-size:12.5px;color:#8a8480;margin-top:2px;line-height:1.45}
+/* Notes */
+.note-tog{margin-top:10px;background:none;border:none;font-size:12.5px;color:#aaa;padding:4px 0;cursor:pointer;font-family:inherit}
+.note-tog:hover{color:#b8613e}
+.note-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-top:10px}
+.note-ta{width:100%;padding:10px 12px;border:1.5px solid #ece7df;border-radius:6px;font-size:13.5px;font-family:inherit;line-height:1.55;margin-top:6px;resize:vertical;color:#3a3530}
+.note-ta:focus{outline:none;border-color:#b8613e}
+/* Nav */
+.nav{display:flex;gap:8px;margin-top:22px}
+.nav .sp{flex:1}
+.nav-back{padding:11px 18px;border:1.5px solid #ece7df;border-radius:8px;background:none;font-size:13px;font-weight:600;color:#8a8480;cursor:pointer;font-family:inherit}
+.nav-next{padding:11px 22px;border:none;border-radius:8px;background:#b8613e;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+/* Done box */
+.done-box{background:#f0fdf6;border:1px solid #a0d9b0;border-radius:10px;padding:16px 18px;margin:16px 0}
+.done-icon{font-size:40px;text-align:center;margin-bottom:8px}
+/* === DASHBOARD === */
+.dash-status{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.d-partner{display:flex;flex-direction:column;align-items:center;gap:5px}
+.d-av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;border:2px solid}
+.d-av.done{background:#2d9e5a;border-color:#2d9e5a;color:#fff}
+.d-av.pending{background:#f0ebe4;border-color:#ddd;color:#aaa}
+.d-name{font-size:10px;font-weight:700;color:#aaa;letter-spacing:.05em}
+/* Question analysis */
+.q-analysis{margin-bottom:22px}
+.q-text{font-size:14px;font-weight:600;color:#1a2744;margin-bottom:10px;line-height:1.35}
+.opt-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.mini-avs{display:flex;gap:3px;flex-shrink:0;width:88px}
+.m-av{width:20px;height:20px;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.m-av.y{background:#1a2744;color:#fff}
+.m-av.n{background:#eee;color:#ccc}
+.m-av.skip{background:#f5f5f5;color:#ddd;border:1px dashed #ddd}
+.opt-bar-wrap{flex:0 0 80px;height:6px;background:#f0ebe4;border-radius:3px;overflow:hidden}
+.opt-bar{height:100%;border-radius:3px;transition:width .4s}
+.bar-all{background:#2d9e5a}
+.bar-most{background:#5aae7a}
+.bar-half{background:#e09a50}
+.bar-few{background:#ccc}
+.opt-row-lbl{font-size:12.5px;color:#5a5550;line-height:1.35;flex:1;min-width:0}
+.opt-cnt{font-size:11px;font-weight:700;color:#aaa;flex-shrink:0;width:28px;text-align:right}
+/* Consensus badge */
+.cbadge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 9px;border-radius:10px;margin-bottom:8px}
+.cbadge.all{background:#d0f0dc;color:#1a6630}
+.cbadge.most{background:#d4eedf;color:#1a5a30}
+.cbadge.split{background:#fde8d0;color:#8a3a10}
+.cbadge.div{background:#f0ebe4;color:#888}
+/* Section divider in dashboard */
+.sec-div{height:1px;background:linear-gradient(90deg,#b8613e40,transparent);margin:32px 0 20px}
+/* Model card */
+.model-card{background:#fff;border:1.5px solid #b8613e40;border-radius:10px;padding:18px;margin:12px 0}
+.model-head{font-size:12px;font-weight:700;color:#b8613e;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.model-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:13.5px;color:#3a3530}
+.model-chk{color:#2d9e5a;font-size:14px;flex-shrink:0;margin-top:2px}
+/* Gap card */
+.gap-card{background:#fff;border:1px solid #f0d0b0;border-radius:8px;padding:14px;margin-bottom:10px}
+.gap-q{font-size:13px;font-weight:600;color:#5a3020;margin-bottom:10px}
+.gap-rows{display:flex;flex-direction:column;gap:6px}
+.gap-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#5a5550}
+.gap-av{width:24px;height:24px;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#1a2744;color:#fff;flex-shrink:0;margin-top:1px}
+.spin{text-align:center;padding:40px;color:#aaa;font-size:14px}
+</style>
+</head>
+<body>
+<div id="app"></div>
 <script>
-var S={w:null,v:"l",a:{},n:{},pg:0},W=["Urvashi","Suva","Samhita","Ajay"],PER=4,app=document.getElementById("app");
-var MEM={};
-var RCODES=["","","",""];
+var DB = 'https://reflexion-92eee-default-rtdb.firebaseio.com';
+
+var W=['Urvashi','Suva','Samhita','Ajay'];
+var INI={Urvashi:'U',Suva:'Sv',Samhita:'Sa',Ajay:'A'};
+var S={w:null,v:'l',a:{},n:{},pg:0};
+var ALL={};
+var app=document.getElementById('app');
 
 var Q=[
 ["q0","Why Are We Doing This?","Before anything else \u2014 why is Reflexion investing in this? What\u2019s the purpose, and what are we willing to commit?","Why is Reflexion doing this project?","What\u2019s the deeper purpose? Select all that ring true.",["voice|To become THE credible voice on coaching culture in India","ip|To build original IP \u2014 a model, a diagnostic, a book","conv|To start better conversations with CEOs and CHROs","market|To create a new market category that Reflexion owns","legacy|To contribute something meaningful to the profession"]],
@@ -71,7 +134,7 @@ var Q=[
 ["q1","Who Is This For?","Before we define coaching culture, let\u2019s be clear about whose problem we\u2019re solving.","What challenge are we helping organisations address?","Think about your client conversations. Select all that resonate.",["pipeline|Leadership pipeline is too thin|Growing faster than they can develop leaders","retain|Best people keep leaving|Managed, not developed","adapt|Organisation can\u2019t keep up with change|Too much command-and-control","scale|Coaching works 1-on-1 but doesn\u2019t scale|How to build it across thousands?","mid|Middle managers are the bottleneck|Senior leaders get it, layer below doesn\u2019t"]],
 ["q2","","","What happens in organisations without coaching culture?","Select all symptoms you see.",["turnover|High-potential leaders leave","stagnation|Leaders deliver but can\u2019t grow others","slow|Decisions pile up at the top","disengage|People do the minimum","fear|People don\u2019t speak up","repeat|Same problems recur despite training"]],
 ["q3","","","Which organisations would benefit most?","Select all.",["tech|Scaling tech and SaaS (500\u20135000)","gcc|Global Capability Centres","mfg|Manufacturing and pharma","fmcg|FMCG and retail","bfsi|Banking and financial services","all|Cross-sector \u2014 universal"]],
-["q4","What Are We Actually Studying?","Nima\u2019s presentation gave us a rich picture of coaching practices and maturity \u2014 who buys coaching, how it\u2019s delivered, what stage organisations are at. That\u2019s valuable. But the deeper question is: has coaching changed how people lead, relate, and work? That\u2019s the shift from coaching maturity to coaching culture.","When we say \u2018coaching culture,\u2019 what do we mean?","Select all that fit.",["programs|How organisations invest in coaching|Budgets, delivery, ROI","leadership|How leaders actually show up day to day|Ask or tell? Develop people?","norms|What\u2019s considered normal behaviour|Feedback flowing? Reflection a habit?","system|How systems support it|Coaching woven into HR processes?","gap|The gap between spending and actually changing|Buy coaching but haven\u2019t changed"]],
+["q4","What Are We Actually Studying?","Nima\u2019s presentation gave us a rich picture \u2014 who buys coaching, how it\u2019s delivered, what stage organisations are at. The deeper question: has coaching changed how people lead, relate, and work? That\u2019s the shift from coaching maturity to coaching culture.","When we say \u2018coaching culture,\u2019 what do we mean?","Select all that fit.",["programs|How organisations invest in coaching|Budgets, delivery, ROI","leadership|How leaders actually show up day to day|Ask or tell? Develop people?","norms|What\u2019s considered normal behaviour|Feedback flowing? Reflection a habit?","system|How systems support it|Coaching woven into HR processes?","gap|The gap between spending and actually changing|Buy coaching but haven\u2019t changed"]],
 ["q5","","","Most powerful report headline?","Select all that appeal.",["gap|\u2018India invests in coaching \u2014 but hasn\u2019t built coaching cultures\u2019","inside|\u2018What coaching culture actually feels like from inside\u2019","map|\u2018Where Indian organisations stand on the coaching journey\u2019","surprise|\u2018The one thing that predicts coaching culture \u2014 not what you\u2019d think\u2019"]],
 ["q6","","","Whose experience should the research reflect?","Select all that matter.",["chro|CHROs and HR leaders (already in study)","senior|Senior leaders who\u2019ve been coached","mid|Mid-level managers \u2014 coaching AND coached","ground|People three levels down","coaches|External coaches across organisations"]],
 ["q7","The Coaching Culture Model","We\u2019re building a clear picture of what coaching culture looks like. This becomes Reflexion\u2019s IP. The research tests and deepens it.","If you spent a day with a leader in a coaching culture, what would you see?","Select all essential behaviours.",["ask|They ask questions before giving answers","listen|They listen to understand, not just respond","empower|They let people decide instead of deciding for them","coached|They get coached themselves and are open about it","feedback|They give feedback in the moment","time|They carve out real time for development conversations"]],
@@ -79,13 +142,13 @@ var Q=[
 ["q9","","","What unwritten rules does a coaching culture run on?","Select all.",["grow|\u2018People can change and grow\u2019 \u2014 capability is built, not fixed","help|\u2018Asking for help is smart\u2019 \u2014 coaching shows strength","trust|\u2018We trust people to figure it out\u2019 \u2014 autonomy over control","fail|\u2018Mistakes are how we learn\u2019 \u2014 failure doesn\u2019t end careers","whole|\u2018Development is about the whole person\u2019 \u2014 not just targets"]],
 ["q10","","","What conditions does the organisation need to provide?","Select all.",["budget|Real budget dedicated to coaching","hr|Coaching woven into performance and promotion","internal|Internal coaching capability, not just external","measure|Measurement that tracks behaviour change","reward|People who coach are recognised","walk|Senior leaders model it themselves","safety|Enough psychological safety for honest conversations","time|Leaders actually have time for development"]],
 ["q11","","","How should we describe maturity stages?","Select all that appeal.",["four|Unaware \u2192 Exploring \u2192 Building \u2192 Living It","three|Spending \u2192 Doing \u2192 Being a Coaching Culture","arch|Types: \u2018The Buyer\u2019 / \u2018The Builder\u2019 / \u2018The Natural\u2019"]],
-["q12","","","Should the model acknowledge when coaching ISN\u2019T the answer?","",["yes|Yes \u2014 adds credibility","brief|Briefly","no|Stay positive"]],
+["q12","","","Should the model acknowledge when coaching ISN\u2019T the answer?","",["yes|Yes \u2014 adds credibility","brief|Briefly \u2014 a short caveat","no|Stay positive \u2014 no caveats"]],
 ["q13","","","Should the model vary by sector?","",["one|One model, adapt in application","flex|Same structure, sector-specific examples","diff|Different models per sector"]],
 ["q14","Making the Research Stronger","We have 41 interviews and 250 survey respondents. How do we get the most from what we have?","How should we frame the survey data?","250 across 5 sectors \u2248 50 per sector.",["directional|Be upfront \u2014 numbers are indicative","pulse|Add a short follow-up survey to more people","qual_star|Lead with interview stories, numbers as support"]],
 ["q15","","","How do we ensure findings reflect reality?","When you ask leaders \u2018do you coach?\u2019 most say yes. Their teams may disagree.",["multi|Include voices from further down","gap|Build \u2018what we intend vs what happens\u2019 into analysis","accept|Acknowledge as limitation, interpret carefully"]],
-["q16","","","Should we look for something unexpected?","",["hunt|Yes \u2014 actively look for a surprise","open|Stay open but don\u2019t force it","positive|Build a strong positive case"]],
-["q17","What We Build","What does the Coaching Culture project become for Reflexion?","How ambitious do we want to be?","This is the biggest strategic choice.",["launch|One-time launch \u2014 publish report, send to stakeholders, do an event, move on|Gets credibility. But it\u2019s a moment, not a movement.","project|Ongoing project \u2014 report + diagnostic + book + regular content|Builds IP over time. Requires sustained effort.","property|Build \u2018The State of Coaching Culture in India\u2019 \u2014 an annual benchmark|Like \u2018Best Places to Work\u2019 for coaching culture. Highest ambition. Multi-year commitment."]],
-["q17b","","","If we build an annual \u2018State of Coaching Culture\u2019 property, what does it need?","Select all that feel necessary.",["maximise|Maximise publicity from THIS research as the foundation year","quant_invest|Commission a larger quant study on top (needs investment, gives statistical weight)","website|Create a dedicated website section","ongoing_survey|Run an ongoing survey orgs can take any time","assess_product|Evolve a paid assessment product","annual|Repeat the full study annually","rankings|Consider a ranking or certification","partner_prop|Partner with a media house to co-own the property"]],
+["q16","","","Should we look for something unexpected?","",["hunt|Yes \u2014 actively look for a surprise finding","open|Stay open but don\u2019t force it","positive|Build a strong positive case"]],
+["q17","What We Build","What does the Coaching Culture project become for Reflexion?","How ambitious do we want to be?","This is the biggest strategic choice.",["launch|One-time launch \u2014 publish report, event, move on|Gets credibility. But it\u2019s a moment, not a movement.","project|Ongoing project \u2014 report + diagnostic + book + content|Builds IP over time. Requires sustained effort.","property|Build \u2018The State of Coaching Culture in India\u2019 \u2014 an annual benchmark|Like \u2018Best Places to Work\u2019 for coaching. Highest ambition. Multi-year commitment."]],
+["q17b","","","If we build an annual property, what does it need?","Select all that feel necessary.",["maximise|Maximise publicity from THIS research as the foundation year","quant_invest|Commission a larger quant study (needs investment, gives statistical weight)","website|Create a dedicated website section","ongoing_survey|Run an ongoing survey orgs can take any time","assess_product|Evolve a paid assessment product","annual|Repeat the full study annually","rankings|Consider a ranking or certification","partner_prop|Partner with a media house to co-own the property"]],
 ["q18","","","What should readers DO after the report?","Select all.",["understand|Understand the landscape","diagnose|Assess where their own organisation is","act|Know what to do next \u2014 stage-specific playbook"]],
 ["q19","","","The diagnostic product?","",["full|Full paid assessment from the start","lite|Free scan first, paid product later","later|Model first, product later"]],
 ["q20","","","The book by Urvashi and Suva?","Select all.",["stories|Real stories from inside organisations","indian|The Indian leadership context","ip|The Reflexion model as IP","all|All three combined"]],
@@ -96,174 +159,436 @@ var Q=[
 ["q26","","","How do we protect ownership?","Select all.",["brand_lead|Reflexion always the lead brand","ip_own|Model and diagnostic 100% Reflexion IP","data_ours|All research data stays with us","contrib|Partners contribute distribution, not content"]]
 ];
 
-function sk(n){return"rfx3_"+n;}
-function sv(){
+var PAGES=[
+  {sec:"Why Are We Doing This?",qs:["q0","q0b"]},
+  {sec:"Who Is This For?",qs:["q1","q2","q3"]},
+  {sec:"What Are We Actually Studying?",qs:["q4","q5","q6"]},
+  {sec:"The Coaching Culture Model",qs:["q7","q8","q9","q10","q11","q12","q13"]},
+  {sec:"Making the Research Stronger",qs:["q14","q15","q16"]},
+  {sec:"What We Build",qs:["q17","q17b","q18","q19","q20","q21"]},
+  {sec:"Partnerships",qs:["q23","q24","q25","q26"]}
+];
+
+// ---- Local storage (in-progress drafts) ----
+function sk(n){return"rfx5_"+n;}
+function saveDraft(){
   if(!S.w)return;
-  var d=JSON.stringify({a:S.a,n:S.n,done:S.v==="d"});
-  MEM[sk(S.w)]=d;
-  try{localStorage.setItem(sk(S.w),d);}catch(e){}
-  try{if(window.storage&&window.storage.set)window.storage.set(sk(S.w),d,true);}catch(e){}
+  try{localStorage.setItem(sk(S.w),JSON.stringify({a:S.a,n:S.n}));}catch(e){}
 }
-function lp(name){
-  S.w=name;S.a={};S.n={};
-  var raw=null;
-  try{raw=localStorage.getItem(sk(name));}catch(e){}
-  if(!raw)raw=MEM[sk(name)]||null;
-  if(raw){try{var d=JSON.parse(raw);S.a=d.a||{};S.n=d.n||{};}catch(e){}}
-  try{
-    if(!raw&&window.storage&&window.storage.get){
-      var p=window.storage.get(sk(name));
-      if(p&&typeof p.then==="function")p.then(function(v){if(v&&S.w===name){try{var d=JSON.parse(v);S.a=d.a||{};S.n=d.n||{};draw();}catch(e){}}}).catch(function(){});
-    }
-  }catch(e){}
+function loadDraft(name){
+  try{var r=localStorage.getItem(sk(name));return r?JSON.parse(r):null;}catch(e){return null;}
 }
-function gr(name){var r=null;try{r=localStorage.getItem(sk(name));}catch(e){}return r||MEM[sk(name)]||null;}
-function isDone(name){var r=gr(name);try{return!!(r&&JSON.parse(r).done);}catch(e){return false;}}
-function xCode(name){
-  var r=gr(name);if(!r)return null;
-  try{var d=JSON.parse(r);return btoa(JSON.stringify({who:name,a:d.a||{},n:d.n||{}}));}catch(e){return null;}
-}
-function pCode(c){try{return JSON.parse(atob(c.trim()));}catch(e){return null;}}
+function hasDraft(name){try{return!!localStorage.getItem(sk(name));}catch(e){return false;}}
+function clearDraft(name){try{localStorage.removeItem(sk(name));}catch(e){}}
 
+// ---- API (Firebase REST — no SDK needed) ----
+function apiSave(cb){
+  var url=DB+'/responses/'+S.w+'.json';
+  fetch(url,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({a:S.a,n:S.n,at:new Date().toISOString()})})
+    .then(function(r){return r.json();}).then(function(){if(cb)cb(true);}).catch(function(){if(cb)cb(false);});
+}
+function apiLoad(cb){
+  fetch(DB+'/responses.json').then(function(r){return r.json();}).then(function(d){ALL=d||{};if(cb)cb();}).catch(function(){ALL={};if(cb)cb();});
+}
+
+// ---- Router ----
 function draw(){
-  if(S.v==="l")drawL();
-  else if(S.v==="f")drawF();
-  else if(S.v==="d")drawD();
-  else drawC();
+  if(S.v==='l')drawL();
+  else if(S.v==='f')drawF();
+  else if(S.v==='d')drawD();
+  else if(S.v==='dash')drawDash();
 }
 
+// ---- Landing ----
 function drawL(){
-  var h='<div class="w"><div class="br">Reflexion \u00b7 Coaching Culture Project</div><h1>Strategy <em>Builder</em></h1>';
-  h+='<p class="p">Our Coaching Culture project can shape Reflexion\u2019s positioning, products, and point of view. 27 reflections across 7 sections \u2014 about 20 minutes.</p>';
-  h+='<div class="ob"><div class="ot">What This Produces</div>';
-  h+='<div class="oi"><div class="on2">1</div><div class="ox"><b>A draft Coaching Culture model</b> \u2014 behaviours, habits, unwritten rules, and conditions</div></div>';
-  h+='<div class="oi"><div class="on2">2</div><div class="ox"><b>A brief for Nima</b> \u2014 to rework the report through a coaching culture lens</div></div>';
-  h+='<div class="oi"><div class="on2">3</div><div class="ox"><b>A project direction</b> \u2014 report, product, book, partnerships, and what we each commit to</div></div>';
-  h+='<div class="oi"><div class="on2">4</div><div class="ox"><b>An alignment report</b> \u2014 generated after all partners complete this</div></div></div>';
-  h+='<div class="lb">I am</div><div class="pg">';
-  for(var i=0;i<W.length;i++){
-    var done=isDone(W[i]),sel=S.w===W[i];
-    h+='<button class="pb'+(sel?" a":"")+'" onclick="pw(\''+W[i]+'\')">'+W[i];
-    if(done)h+='<span class="pd" title="Completed"></span>';
-    h+='</button>';
-  }
-  h+='</div>';
-  if(S.w){
-    var done=isDone(S.w);
-    h+='<button class="b1" onclick="go()">'+(done?"Continue my reflections \u2192":"Begin reflections \u2192")+'</button>';
-    if(done){var code=xCode(S.w);if(code){
-      h+='<div class="ob" style="margin-top:8px"><div class="ot">Your response code</div>';
-      h+='<div class="cb">'+code+'</div>';
-      h+='<button class="bt" id="cbL" onclick="cp(\'cbL\',\''+encodeURIComponent(code)+'\')">Copy and send to Ajay</button>';
-      h+='<p style="font-size:12px;color:#aaa;text-align:center;margin-top:4px">Send via WhatsApp or email</p></div>';
-    }}
-  } else {h+='<p class="hn">Select your name to begin</p>';}
-  h+='<div class="div"></div>';
-  h+='<button class="b2" onclick="S.v=\'c\';draw()">Collect all responses (Ajay) \u2192</button>';
-  h+='</div>';
-  app.innerHTML=h;
-}
-function pw(w){lp(w);draw();}
-function go(){S.v="f";S.pg=0;draw();window.scrollTo(0,0);}
+  app.innerHTML='<div class="w"><div class="spin">Loading\u2026</div></div>';
+  apiLoad(function(){
+    var h='<div class="w">';
+    h+='<div class="brand">Reflexion \u00b7 Coaching Culture Project</div>';
+    h+='<h1>Strategy <em>Builder</em></h1>';
+    h+='<p class="body">27 reflections across 7 sections \u2014 about 20 minutes. Complete independently, then see how the team aligns.</p>';
 
-function drawF(){
-  var st=S.pg*PER,batch=Q.slice(st,st+PER),cnt=0;for(var k in S.a)if(S.a[k]&&S.a[k].length)cnt++;
-  var pct=Math.round(cnt/Q.length*100),pages=Math.ceil(Q.length/PER);
-  var h='<div class="bar"><div class="bf" style="width:'+pct+'%"></div></div><div class="w">';
-  h+='<div class="tb"><span>'+S.w+'</span><span>'+cnt+'/'+Q.length+' answered</span></div>';
-  h+='<div class="pg-dots">';
-  for(var p=0;p<pages;p++)h+='<button class="pg-dot'+(p===S.pg?" a":"")+'" onclick="gp('+p+')"></button>';
-  h+='</div>';
-  var cs="";
-  for(var i=0;i<batch.length;i++){
-    var q=batch[i],id=q[0],sec=q[1],sub=q[2],ql=q[3],cx=q[4],opts=q[5];
-    if(sec&&sec!==cs){cs=sec;h+='<div class="sh">'+sec+'</div>';if(sub)h+='<p class="ss">'+sub+'</p>';}
-    h+='<div class="qc"><h3>'+ql+'</h3>';if(cx)h+='<p class="cx">'+cx+'</p>';h+='<div class="os">';
-    for(var j=0;j<opts.length;j++){
-      var pt=opts[j].split("|"),v=pt[0],l=pt[1],d=pt[2]||"",sel=(S.a[id]||[]).indexOf(v)>=0;
-      h+='<button class="op'+(sel?" a":"")+'" onclick="pk(\''+id+'\',\''+v+'\')">';
-      h+='<div class="dk"><div class="di"></div></div>';
-      h+='<div style="flex:1"><div class="ol">'+l+'</div>'+(d?'<div class="od">'+d+'</div>':'')+'</div></button>';
+    h+='<p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin:20px 0 8px">Select your name</p>';
+    h+='<div class="pgrid">';
+    for(var i=0;i<W.length;i++){
+      var nm=W[i];
+      var svd=!!(ALL[nm]&&ALL[nm].at);
+      var drft=hasDraft(nm)&&!svd;
+      var act=S.w===nm;
+      h+='<button class="pbtn'+(act?' active':'')+'" onclick="pw(\''+nm+'\')">';
+      if(svd)h+='<span class="pdot"></span>';
+      h+=nm;
+      if(drft){
+        h+='<span style="font-size:10px;color:'+(act?'rgba(255,255,255,.7)':'#b8613e')+';font-weight:700;margin-left:auto">draft</span>';
+      }
+      if(svd){
+        h+='<span style="font-size:10px;color:'+(act?'rgba(255,255,255,.7)':'#2d9e5a')+';font-weight:700;margin-left:auto">\u2713 done</span>';
+      }
+      h+='</button>';
     }
     h+='</div>';
-    if(S.n[id]!=null)h+='<div class="nl">Your View</div><textarea class="ta" id="n_'+id+'" onblur="sn(\''+id+'\')" rows="2" placeholder="Anything else on your mind...">'+(S.n[id]||'')+'</textarea>';
-    else h+='<button class="ab" onclick="opn(\''+id+'\')">+ Add your own thinking</button>';
+
+    if(S.w){
+      var serverDone=!!(ALL[S.w]&&ALL[S.w].at);
+      if(serverDone){
+        h+='<div class="done-box"><p style="font-size:14px;font-weight:600;color:#1a6630">\u2713 Your responses are submitted</p><p style="font-size:13px;color:#5a8060;margin-top:4px">You can still review or update them.</p></div>';
+        h+='<button class="btn-p" onclick="goForm()">Review my responses</button>';
+      } else {
+        h+='<button class="btn-p" onclick="goForm()">'+(hasDraft(S.w)?'Continue my reflections \u2192':'Begin reflections \u2192')+'</button>';
+      }
+    } else {
+      h+='<p class="hint">Select your name to begin</p>';
+    }
+
+    h+='<div class="divider"></div>';
+    var submitted=W.filter(function(n){return ALL[n]&&ALL[n].at;}).length;
+    h+='<button class="btn-s" onclick="S.v=\'dash\';draw()">View Dashboard ('+submitted+'/4 submitted) \u2192</button>';
+    h+='</div>';
+    app.innerHTML=h;
+  });
+}
+
+function pw(name){
+  S.w=name;
+  var draft=loadDraft(name);
+  if(draft){S.a=draft.a||{};S.n=draft.n||{};}
+  else if(ALL[name]&&ALL[name].a){S.a=ALL[name].a||{};S.n=ALL[name].n||{};}
+  else{S.a={};S.n={};}
+  draw();
+}
+
+function goForm(){S.v='f';S.pg=0;draw();}
+
+// ---- Form ----
+function drawF(){
+  var page=PAGES[S.pg];
+  var total=PAGES.length;
+  var qids=page.qs;
+  var pageQs=[];
+  for(var qi=0;qi<Q.length;qi++){if(qids.indexOf(Q[qi][0])>=0)pageQs.push(Q[qi]);}
+  pageQs.sort(function(a,b){return qids.indexOf(a[0])-qids.indexOf(b[0]);});
+
+  var pct=Math.round((S.pg/total)*100);
+  var h='<div class="w">';
+  h+='<div class="pbar-wrap"><div class="pbar-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div class="pbar-lbl"><span>'+page.sec+'</span><span>'+(S.pg+1)+' / '+total+'</span></div>';
+  h+='<div class="pdots">';
+  for(var i=0;i<total;i++)h+='<button class="pdot-btn'+(i===S.pg?' active':'')+'" onclick="gp('+i+')"></button>';
+  h+='</div>';
+
+  if(pageQs[0]&&pageQs[0][1]){
+    h+='<div class="sec-h">'+pageQs[0][1]+'</div>';
+    h+='<div class="sec-sub">'+pageQs[0][2]+'</div>';
+  }
+
+  for(var qi=0;qi<pageQs.length;qi++){
+    var q=pageQs[qi];
+    var id=q[0],qtext=q[3],ctx=q[4],opts=q[5];
+    var sel=S.a[id]||[];
+    h+='<div class="qblock">';
+    h+='<h3>'+qtext+'</h3>';
+    if(ctx)h+='<div class="ctx">'+ctx+'</div>';
+    h+='<div class="opts">';
+    for(var oi=0;oi<opts.length;oi++){
+      var parts=opts[oi].split('|');
+      var v=parts[0],l=parts[1],d=parts[2]||'';
+      var isSel=sel.indexOf(v)>=0;
+      h+='<button class="opt'+(isSel?' sel':'')+'" onclick="pk(\''+id+'\',\''+v+'\')">';
+      h+='<div class="opt-box"><div class="opt-chk"></div></div>';
+      h+='<div style="flex:1"><div class="opt-lbl">'+l+'</div>'+(d?'<div class="opt-desc">'+d+'</div>':'')+'</div></button>';
+    }
+    h+='</div>';
+    if(S.n[id]!=null){
+      h+='<div class="note-lbl">Your View</div>';
+      h+='<textarea class="note-ta" id="nt_'+id+'" onblur="sn(\''+id+'\')" rows="2" placeholder="Anything else on your mind\u2026">'+eh(S.n[id]||'')+'</textarea>';
+    } else {
+      h+='<button class="note-tog" onclick="opn(\''+id+'\')">+ Add a note</button>';
+    }
     h+='</div>';
   }
-  h+='<div class="nv">';
-  if(S.pg>0)h+='<button class="nb" onclick="gp('+(S.pg-1)+')">\u2190 Back</button>';
+
+  h+='<div class="nav">';
+  if(S.pg>0)h+='<button class="nav-back" onclick="gp('+(S.pg-1)+')">\u2190 Back</button>';
   h+='<div class="sp"></div>';
-  if(S.pg<pages-1)h+='<button class="np" onclick="gp('+(S.pg+1)+')">Next \u2192</button>';
-  else h+='<button class="np" onclick="fin()">Finish \u2192</button>';
+  if(S.pg<total-1){
+    h+='<button class="nav-next" onclick="gp('+(S.pg+1)+')">Next \u2192</button>';
+  } else {
+    h+='<button class="nav-next" onclick="fin()">Review & Submit \u2192</button>';
+  }
   h+='</div></div>';
   app.innerHTML=h;
 }
-function pk(id,v){var c=S.a[id]||[],i=c.indexOf(v);if(i>=0)c.splice(i,1);else c.push(v);S.a[id]=c;sv();drawF();}
-function opn(id){S.n[id]="";drawF();setTimeout(function(){var el=document.getElementById("n_"+id);if(el)el.focus();},40);}
-function sn(id){var el=document.getElementById("n_"+id);if(el){S.n[id]=el.value;sv();}}
-function gp(p){var els=document.querySelectorAll("textarea[id^='n_']");for(var i=0;i<els.length;i++){var m=els[i].id.match(/^n_(.+)$/);if(m)S.n[m[1]]=els[i].value;}sv();S.pg=p;draw();window.scrollTo(0,0);}
-function fin(){gp(0);S.v="d";sv();draw();window.scrollTo(0,0);}
 
+// ---- Submit / Done ----
 function drawD(){
-  var cnt=0;for(var k in S.a)if(S.a[k]&&S.a[k].length)cnt++;
-  var code=xCode(S.w)||"";
-  var h='<div class="w"><div class="br">Reflexion</div><h1>Thank you, '+S.w+'</h1>';
-  h+='<p class="p">You\u2019ve completed <b>'+cnt+' of '+Q.length+'</b> reflections. Your responses are saved on this device.</p>';
-  h+='<div class="ob"><div class="ot">What happens next</div>';
-  h+='<div class="oi"><div class="on2">1</div><div class="ox">Each partner completes this on their own device</div></div>';
-  h+='<div class="oi"><div class="on2">2</div><div class="ox"><b>Copy your response code below</b> and send it to Ajay via WhatsApp or email</div></div>';
-  h+='<div class="oi"><div class="on2">3</div><div class="ox">Ajay brings all four codes to Claude to generate the <b>full alignment report</b></div></div>';
-  h+='<div class="oi"><div class="on2">4</div><div class="ox">We hold a focused <b>partner call</b> \u2014 time only on the splits</div></div></div>';
-  if(code){
-    h+='<div class="ob"><div class="ot">Your response code \u2014 copy and send to Ajay</div>';
-    h+='<div class="cb">'+code+'</div>';
-    h+='<button class="bt" id="cbD" onclick="cp(\'cbD\',\''+encodeURIComponent(code)+'\')">Copy response code</button>';
-    h+='<p style="font-size:12px;color:#aaa;text-align:center;margin-top:4px">Ajay needs this to generate the alignment report</p></div>';
+  var cnt=0;for(var k in S.a){if(S.a[k]&&S.a[k].length>0)cnt++;}
+  var total=Q.length;
+  var h='<div class="w"><div class="brand">Reflexion</div><h1>Review & <em>Submit</em></h1>';
+  h+='<p class="body">You\u2019ve answered <b>'+cnt+' of '+total+' questions</b>. Submit to add your responses to the shared dashboard.</p>';
+
+  h+='<div class="card"><div class="card-title">Your completion by section</div>';
+  for(var pi=0;pi<PAGES.length;pi++){
+    var pg=PAGES[pi];
+    var ans=0;
+    for(var qi=0;qi<pg.qs.length;qi++){if(S.a[pg.qs[qi]]&&S.a[pg.qs[qi]].length>0)ans++;}
+    var pct=Math.round((ans/pg.qs.length)*100);
+    h+='<div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px">';
+    h+='<span style="font-weight:600">'+pg.sec+'</span><span style="color:#aaa">'+ans+'/'+pg.qs.length+'</span></div>';
+    h+='<div style="height:4px;background:#f0ebe4;border-radius:2px"><div style="height:100%;width:'+pct+'%;background:'+(pct===100?'#2d9e5a':'#b8613e')+';border-radius:2px"></div></div></div>';
   }
-  h+='<div class="nv"><button class="nb" onclick="S.v=\'f\';S.pg=0;draw()">\u2190 Review answers</button><div class="sp"></div><button class="np" onclick="S.v=\'l\';draw()">Home</button></div></div>';
+  h+='</div>';
+
+  h+='<div class="done-box"><div class="done-icon">\uD83C\uDFAF</div>';
+  h+='<p style="font-size:15px;font-weight:600;color:#1a5a30;text-align:center;margin-bottom:6px">Ready to submit?</p>';
+  h+='<p style="font-size:13px;color:#5a8060;text-align:center">Your responses will appear on the shared dashboard immediately.</p></div>';
+  h+='<button class="btn-a" id="subBtn" onclick="doSubmit()">Submit my responses \u2192</button>';
+  h+='<button class="btn-s" onclick="S.v=\'f\';S.pg=0;draw()">\u2190 Go back and review</button>';
+  h+='</div>';
   app.innerHTML=h;
 }
 
-function drawC(){
-  for(var i=0;i<W.length;i++){if(!RCODES[i]){var c=xCode(W[i]);if(c)RCODES[i]=c;}}
-  var vc=0;for(var i=0;i<RCODES.length;i++){if(RCODES[i]&&pCode(RCODES[i]))vc++;}
-  var h='<div class="w"><div class="br">Reflexion</div><h1>Collect <em>Responses</em></h1>';
-  h+='<p class="p">Paste each partner\u2019s response code below. Codes from this device are pre-filled automatically.</p>';
-  h+='<div class="chips">';
-  for(var i=0;i<W.length;i++){var done=RCODES[i]&&pCode(RCODES[i]);h+='<span class="chip '+(done?"y":"n")+'">'+W[i]+(done?" \u2713":"")+'</span>';}
-  h+='</div>';
-  for(var i=0;i<W.length;i++){
-    var valid=RCODES[i]&&pCode(RCODES[i]),err=RCODES[i]&&!valid;
-    h+='<div class="cr"><label>'+W[i]+'</label>';
-    h+='<input type="text" id="rc'+i+'" placeholder="Paste code\u2026" value="'+eh(RCODES[i])+'" '+(valid?'class="ok"':err?'class="err"':'')+' oninput="uc('+i+')" /></div>';
-  }
-  if(vc>0){
-    var allC=[];for(var i=0;i<RCODES.length;i++){if(RCODES[i]&&pCode(RCODES[i]))allC.push(W[i]+":"+RCODES[i]);}
-    var block="=== REFLEXION PARTNER RESPONSES ===\n"+allC.join("\n")+"\n===================================";
-    h+='<div style="margin-top:16px"><div class="ot">Copy for Claude \u2014 paste into your Cowork conversation</div>';
-    h+='<p style="font-size:13px;color:#8a8480;margin-bottom:8px">Claude will generate the full alignment report as a Word document from this block.</p>';
-    h+='<div class="cb">'+eh(block)+'</div>';
-    h+='<button class="bt" id="cbC" onclick="cp(\'cbC\',\''+encodeURIComponent(block)+'\')">Copy for Claude ('+(vc)+' response'+(vc!==1?"s":"")+')</button>';
+function doSubmit(){
+  var btn=document.getElementById('subBtn');
+  if(btn){btn.textContent='Saving\u2026';btn.disabled=true;}
+  apiSave(function(ok){
+    if(ok){
+      clearDraft(S.w);
+      var h='<div class="w"><div style="text-align:center;padding:48px 0">';
+      h+='<div style="font-size:56px;margin-bottom:16px">\u2705</div>';
+      h+='<h1 style="font-size:24px;margin-bottom:8px">Submitted!</h1>';
+      h+='<p class="body" style="text-align:center">Your responses are on the dashboard.</p></div>';
+      h+='<button class="btn-p" onclick="S.v=\'dash\';draw()">View Dashboard \u2192</button>';
+      h+='<button class="btn-s" onclick="S.v=\'l\';S.w=null;draw()">\u2190 Home</button></div>';
+      app.innerHTML=h;
+    } else {
+      var btn2=document.getElementById('subBtn');
+      if(btn2){btn2.textContent='Submit my responses \u2192';btn2.disabled=false;}
+      alert('Could not reach the server. Please check your connection and try again.');
+    }
+  });
+}
+
+// ---- Dashboard ----
+function drawDash(){
+  app.innerHTML='<div class="w"><div class="spin">Loading dashboard\u2026</div></div>';
+  apiLoad(function(){
+    var sub=W.filter(function(n){return ALL[n]&&ALL[n].at;});
+    var n=sub.length;
+
+    var h='<div class="w">';
+    h+='<div class="brand">Reflexion \u00b7 Coaching Culture Project</div>';
+    h+='<h1>Alignment <em>Dashboard</em></h1>';
+
+    // Status row
+    h+='<div class="dash-status">';
+    for(var i=0;i<W.length;i++){
+      var nm=W[i];
+      var done=!!(ALL[nm]&&ALL[nm].at);
+      h+='<div class="d-partner"><div class="d-av '+(done?'done':'pending')+'">'+INI[nm]+'</div>';
+      h+='<div class="d-name">'+nm+'</div></div>';
+    }
     h+='</div>';
-  } else {
-    h+='<p class="hn" style="margin-top:16px">Paste at least one response code to continue</p>';
+
+    if(n===0){
+      h+='<p class="body">No responses yet. Partners will appear here as they submit.</p>';
+    } else {
+      h+='<p class="body"><b>'+n+' of 4</b> partner'+(n===1?'':'s')+' submitted'+(n<4?' \u2014 dashboard updates as more come in.':'.')+'</p>';
+
+      // Draft Coaching Culture Model
+      h+=buildModel(sub);
+
+      // Where you\'re split
+      h+=buildGaps(sub);
+
+      // Section-by-section
+      for(var pi=0;pi<PAGES.length;pi++){
+        h+=buildSection(PAGES[pi],sub);
+      }
+    }
+
+    h+='<div class="divider"></div>';
+    h+='<button class="btn-s" onclick="apiLoad(function(){S.v=\'dash\';draw();})">&#8635; Refresh</button>';
+    h+='<button class="btn-s" onclick="S.v=\'l\';draw()">\u2190 Back to home</button>';
+    h+='</div>';
+    app.innerHTML=h;
+  });
+}
+
+function buildModel(sub){
+  var n=sub.length;
+  if(n<2)return'';
+  var threshold=n>=3?3:2;
+  var MODEL=[
+    {label:"The Leader \u2014 how they show up",q:"q7"},
+    {label:"The Team \u2014 everyday habits",q:"q8"},
+    {label:"The Culture \u2014 unwritten rules",q:"q9"},
+    {label:"The Organisation \u2014 conditions",q:"q10"}
+  ];
+
+  var modelHTML='';
+  for(var mi=0;mi<MODEL.length;mi++){
+    var m=MODEL[mi];
+    var qdata=null;
+    for(var qi=0;qi<Q.length;qi++){if(Q[qi][0]===m.q){qdata=Q[qi];break;}}
+    if(!qdata)continue;
+    var items=[];
+    for(var oi=0;oi<qdata[5].length;oi++){
+      var parts=qdata[5][oi].split('|');
+      var v=parts[0],l=parts[1];
+      var cnt=0;
+      for(var si=0;si<sub.length;si++){if((ALL[sub[si]].a[m.q]||[]).indexOf(v)>=0)cnt++;}
+      if(cnt>=threshold)items.push(l);
+    }
+    if(items.length>0){
+      modelHTML+='<div class="model-card"><div class="model-head">'+m.label+'</div>';
+      for(var ii=0;ii<items.length;ii++)modelHTML+='<div class="model-item"><span class="model-chk">\u2713</span>'+items[ii]+'</div>';
+      modelHTML+='</div>';
+    }
   }
-  h+='<div class="div"></div>';
-  h+='<button class="b2" onclick="S.v=\'l\';draw()">\u2190 Back</button></div>';
-  app.innerHTML=h;
+
+  if(!modelHTML)return'';
+  var h='<div><div class="sec-div"></div>';
+  h+='<div class="sec-h">Draft Coaching Culture Model</div>';
+  h+='<p class="body">Built from the options '+(threshold===n?'all':'most')+' partners agreed on.</p>';
+  h+=modelHTML+'</div>';
+  return h;
 }
-function eh(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function uc(i){
-  var el=document.getElementById("rc"+i);if(!el)return;
-  var v=el.value.trim();RCODES[i]=v;
-  el.className=v?(pCode(v)?"ok":"err"):"";
-  drawC();
+
+function buildGaps(sub){
+  var n=sub.length;
+  if(n<2)return'';
+  // Single-select questions where people might differ
+  var gapQids=["q17","q12","q13","q16","q19","q23","q25"];
+  var gaps=[];
+  for(var gi=0;gi<gapQids.length;gi++){
+    var qid=gapQids[gi];
+    var qdata=null;
+    for(var qi=0;qi<Q.length;qi++){if(Q[qi][0]===qid){qdata=Q[qi];break;}}
+    if(!qdata)continue;
+    var picks={};
+    for(var si=0;si<sub.length;si++){
+      var nm=sub[si];
+      var ans=(ALL[nm].a[qid]||[]);
+      if(ans.length>0)picks[nm]=ans;
+    }
+    // Check if different
+    var keys=Object.keys(picks);
+    if(keys.length<2)continue;
+    var first=picks[keys[0]].slice().sort().join(',');
+    var allSame=true;
+    for(var ki=1;ki<keys.length;ki++){
+      if(picks[keys[ki]].slice().sort().join(',')!==first){allSame=false;break;}
+    }
+    if(!allSame)gaps.push({q:qdata,picks:picks});
+  }
+
+  if(gaps.length===0)return'';
+  var h='<div><div class="sec-div"></div>';
+  h+='<div class="sec-h">Where You\'re Split</div>';
+  h+='<p class="body">These are the clearest differences \u2014 worth a focused conversation.</p>';
+  for(var gi=0;gi<gaps.length;gi++){
+    var gap=gaps[gi];
+    h+='<div class="gap-card"><div class="gap-q">'+gap.q[3]+'</div><div class="gap-rows">';
+    var pks=gap.picks;
+    for(var wi=0;wi<W.length;wi++){
+      var nm=W[wi];
+      if(!pks[nm])continue;
+      var labels=[];
+      for(var ai=0;ai<pks[nm].length;ai++){
+        for(var oi=0;oi<gap.q[5].length;oi++){
+          var pts=gap.q[5][oi].split('|');
+          if(pts[0]===pks[nm][ai]){labels.push(pts[1]);break;}
+        }
+      }
+      h+='<div class="gap-row"><div class="gap-av">'+INI[nm]+'</div><span>'+labels.join(', ')+'</span></div>';
+    }
+    h+='</div></div>';
+  }
+  h+='</div>';
+  return h;
 }
-function cp(btnId,enc){
-  var t=decodeURIComponent(enc);
-  function flash(){var b=document.getElementById(btnId);if(b){b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent=b.textContent.replace("Copied!","Copy response code");b.classList.remove("ok");},2500);}}
-  try{navigator.clipboard.writeText(t).then(flash).catch(function(){fb(t);flash();});}catch(e){fb(t);flash();}
+
+function buildSection(page,sub){
+  var n=sub.length;
+  var h='<div><div class="sec-div"></div><div class="sec-h">'+page.sec+'</div>';
+  for(var qi=0;qi<page.qs.length;qi++){
+    var qid=page.qs[qi];
+    var qdata=null;
+    for(var qj=0;qj<Q.length;qj++){if(Q[qj][0]===qid){qdata=Q[qj];break;}}
+    if(!qdata)continue;
+
+    h+='<div class="q-analysis"><div class="q-text">'+qdata[3]+'</div>';
+
+    // Compute opt counts
+    var ocs=[];
+    for(var oi=0;oi<qdata[5].length;oi++){
+      var parts=qdata[5][oi].split('|');
+      var v=parts[0],l=parts[1];
+      var who=[];
+      for(var si=0;si<sub.length;si++){
+        var nm=sub[si];
+        if((ALL[nm].a[qid]||[]).indexOf(v)>=0)who.push(nm);
+      }
+      ocs.push({v:v,l:l,cnt:who.length,who:who});
+    }
+    ocs.sort(function(a,b){return b.cnt-a.cnt;});
+
+    var maxCnt=ocs.length>0?ocs[0].cnt:0;
+    var badge='';
+    if(n>=2){
+      if(maxCnt===n&&n>=3)badge='<span class="cbadge all">Universal</span>';
+      else if(maxCnt>=n&&n===2)badge='<span class="cbadge all">Agreed</span>';
+      else if(maxCnt===n-1&&n>=3)badge='<span class="cbadge most">Strong consensus</span>';
+      else if(maxCnt<=1&&n>=3)badge='<span class="cbadge div">Diverse views</span>';
+      else badge='<span class="cbadge split">Split</span>';
+    }
+    if(badge)h+=badge;
+
+    for(var oi=0;oi<ocs.length;oi++){
+      var oc=ocs[oi];
+      var pct=n>0?Math.round((oc.cnt/n)*100):0;
+      var barCls=oc.cnt===n?'bar-all':oc.cnt>=n-1&&n>1?'bar-most':oc.cnt>n/2?'bar-half':'bar-few';
+      h+='<div class="opt-row"><div class="mini-avs">';
+      for(var wi=0;wi<W.length;wi++){
+        var nm=W[wi];
+        var isSubmitted=sub.indexOf(nm)>=0;
+        var isSel=oc.who.indexOf(nm)>=0;
+        h+='<div class="m-av '+(isSubmitted?(isSel?'y':'n'):'skip')+'">'+INI[nm]+'</div>';
+      }
+      h+='</div>';
+      h+='<div class="opt-bar-wrap"><div class="opt-bar '+barCls+'" style="width:'+pct+'%"></div></div>';
+      h+='<div class="opt-row-lbl">'+oc.l+'</div>';
+      h+='<div class="opt-cnt">'+oc.cnt+'/'+n+'</div>';
+      h+='</div>';
+    }
+    h+='</div>';
+  }
+  h+='</div>';
+  return h;
 }
-function fb(t){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(a);}
+
+// ---- Handlers ----
+function pk(id,v){
+  var c=S.a[id]||[];
+  var i=c.indexOf(v);
+  if(i>=0)c.splice(i,1);else c.push(v);
+  S.a[id]=c;saveDraft();drawF();
+}
+function opn(id){S.n[id]='';drawF();setTimeout(function(){var el=document.getElementById('nt_'+id);if(el)el.focus();},50);}
+function sn(id){var el=document.getElementById('nt_'+id);if(el){S.n[id]=el.value;saveDraft();}}
+function gp(p){
+  var tas=document.querySelectorAll('textarea[id^="nt_"]');
+  for(var i=0;i<tas.length;i++){var m=tas[i].id.match(/^nt_(.+)$/);if(m){S.n[m[1]]=tas[i].value;}}
+  saveDraft();S.pg=p;draw();window.scrollTo(0,0);
+}
+function fin(){
+  var tas=document.querySelectorAll('textarea[id^="nt_"]');
+  for(var i=0;i<tas.length;i++){var m=tas[i].id.match(/^nt_(.+)$/);if(m){S.n[m[1]]=tas[i].value;}}
+  saveDraft();S.v='d';draw();window.scrollTo(0,0);
+}
+function eh(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
 draw();
-</script></body></html>
+</script>
+</body>
+</html>
