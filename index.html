@@ -126,36 +126,37 @@ var W=['Urvashi','Suva','Samhita','Ajay'];
 var INI={Urvashi:'U',Suva:'Sv',Samhita:'Sa',Ajay:'A'};
 var S={w:null,v:'l',a:{},n:{},pg:0};
 var ALL={};
+var LOAD_ERR=null;
 var app=document.getElementById('app');
 
 var Q=[
-["q0","Why Are We Doing This?","Before anything else \u2014 why is Reflexion investing in this? What\u2019s the purpose, and what are we willing to commit?","Why is Reflexion doing this project?","What\u2019s the deeper purpose? Select all that ring true.",["voice|To become THE credible voice on coaching culture in India","ip|To build original IP \u2014 a model, a diagnostic, a book","conv|To start better conversations with CEOs and CHROs","market|To create a new market category that Reflexion owns","legacy|To contribute something meaningful to the profession"]],
-["q0b","","","How do we realistically make this happen alongside client work?","Select all approaches you\u2019d support.",["blend_bd|Weave coaching culture into BD and proposals \u2014 then repurpose for the project","blend_ws|Add a coaching culture section into existing workshops \u2014 builds IP while delivering","content_q|Each partner writes or reviews one piece per quarter","intern|Invest in an intern to support research and content \u2014 scale to a hire later","nima_ext|Extend Nima\u2019s engagement and ask her to build an intern into her team","half_day|Dedicate half a day per month specifically to this","lead_ws|One partner owns each workstream (report, product, content, book)","speak|Each of us speaks about coaching culture at 2+ events this year"]],
-["q1","Who Is This For?","Before we define coaching culture, let\u2019s be clear about whose problem we\u2019re solving.","What challenge are we helping organisations address?","Think about your client conversations. Select all that resonate.",["pipeline|Leadership pipeline is too thin|Growing faster than they can develop leaders","retain|Best people keep leaving|Managed, not developed","adapt|Organisation can\u2019t keep up with change|Too much command-and-control","scale|Coaching works 1-on-1 but doesn\u2019t scale|How to build it across thousands?","mid|Middle managers are the bottleneck|Senior leaders get it, layer below doesn\u2019t"]],
-["q2","","","What happens in organisations without coaching culture?","Select all symptoms you see.",["turnover|High-potential leaders leave","stagnation|Leaders deliver but can\u2019t grow others","slow|Decisions pile up at the top","disengage|People do the minimum","fear|People don\u2019t speak up","repeat|Same problems recur despite training"]],
-["q3","","","Which organisations would benefit most?","Select all.",["tech|Scaling tech and SaaS (500\u20135000)","gcc|Global Capability Centres","mfg|Manufacturing and pharma","fmcg|FMCG and retail","bfsi|Banking and financial services","all|Cross-sector \u2014 universal"]],
-["q4","What Are We Actually Studying?","Nima\u2019s presentation gave us a rich picture \u2014 who buys coaching, how it\u2019s delivered, what stage organisations are at. The deeper question: has coaching changed how people lead, relate, and work? That\u2019s the shift from coaching maturity to coaching culture.","When we say \u2018coaching culture,\u2019 what do we mean?","Select all that fit.",["programs|How organisations invest in coaching|Budgets, delivery, ROI","leadership|How leaders actually show up day to day|Ask or tell? Develop people?","norms|What\u2019s considered normal behaviour|Feedback flowing? Reflection a habit?","system|How systems support it|Coaching woven into HR processes?","gap|The gap between spending and actually changing|Buy coaching but haven\u2019t changed"]],
-["q5","","","Most powerful report headline?","Select all that appeal.",["gap|\u2018India invests in coaching \u2014 but hasn\u2019t built coaching cultures\u2019","inside|\u2018What coaching culture actually feels like from inside\u2019","map|\u2018Where Indian organisations stand on the coaching journey\u2019","surprise|\u2018The one thing that predicts coaching culture \u2014 not what you\u2019d think\u2019"]],
-["q6","","","Whose experience should the research reflect?","Select all that matter.",["chro|CHROs and HR leaders (already in study)","senior|Senior leaders who\u2019ve been coached","mid|Mid-level managers \u2014 coaching AND coached","ground|People three levels down","coaches|External coaches across organisations"]],
-["q7","The Coaching Culture Model","We\u2019re building a clear picture of what coaching culture looks like. This becomes Reflexion\u2019s IP. The research tests and deepens it.","If you spent a day with a leader in a coaching culture, what would you see?","Select all essential behaviours.",["ask|They ask questions before giving answers","listen|They listen to understand, not just respond","empower|They let people decide instead of deciding for them","coached|They get coached themselves and are open about it","feedback|They give feedback in the moment","time|They carve out real time for development conversations"]],
-["q8","","","What everyday habits signal coaching culture across the organisation?","Select all.",["questions|People explore before prescribing \u2014 questions first","fb|Feedback happens in real time","reflect|Teams regularly pause to ask \u2018what did we learn?\u2019","challenge|People can push back without fear","own|People drive their own development"]],
-["q9","","","What unwritten rules does a coaching culture run on?","Select all.",["grow|\u2018People can change and grow\u2019 \u2014 capability is built, not fixed","help|\u2018Asking for help is smart\u2019 \u2014 coaching shows strength","trust|\u2018We trust people to figure it out\u2019 \u2014 autonomy over control","fail|\u2018Mistakes are how we learn\u2019 \u2014 failure doesn\u2019t end careers","whole|\u2018Development is about the whole person\u2019 \u2014 not just targets"]],
+["q0","Why Are We Doing This?","Before anything else — why is Reflexion investing in this? What’s the purpose, and what are we willing to commit?","Why is Reflexion doing this project?","What’s the deeper purpose? Select all that ring true.",["voice|To become THE credible voice on coaching culture in India","ip|To build original IP — a model, a diagnostic, a book","conv|To start better conversations with CEOs and CHROs","market|To create a new market category that Reflexion owns","legacy|To contribute something meaningful to the profession"]],
+["q0b","","","How do we realistically make this happen alongside client work?","Select all approaches you’d support.",["blend_bd|Weave coaching culture into BD and proposals — then repurpose for the project","blend_ws|Add a coaching culture section into existing workshops — builds IP while delivering","content_q|Each partner writes or reviews one piece per quarter","intern|Invest in an intern to support research and content — scale to a hire later","nima_ext|Extend Nima’s engagement and ask her to build an intern into her team","half_day|Dedicate half a day per month specifically to this","lead_ws|One partner owns each workstream (report, product, content, book)","speak|Each of us speaks about coaching culture at 2+ events this year"]],
+["q1","Who Is This For?","Before we define coaching culture, let’s be clear about whose problem we’re solving.","What challenge are we helping organisations address?","Think about your client conversations. Select all that resonate.",["pipeline|Leadership pipeline is too thin|Growing faster than they can develop leaders","retain|Best people keep leaving|Managed, not developed","adapt|Organisation can’t keep up with change|Too much command-and-control","scale|Coaching works 1-on-1 but doesn’t scale|How to build it across thousands?","mid|Middle managers are the bottleneck|Senior leaders get it, layer below doesn’t"]],
+["q2","","","What happens in organisations without coaching culture?","Select all symptoms you see.",["turnover|High-potential leaders leave","stagnation|Leaders deliver but can’t grow others","slow|Decisions pile up at the top","disengage|People do the minimum","fear|People don’t speak up","repeat|Same problems recur despite training"]],
+["q3","","","Which organisations would benefit most?","Select all.",["tech|Scaling tech and SaaS (500–5000)","gcc|Global Capability Centres","mfg|Manufacturing and pharma","fmcg|FMCG and retail","bfsi|Banking and financial services","all|Cross-sector — universal"]],
+["q4","What Are We Actually Studying?","Nima’s presentation gave us a rich picture — who buys coaching, how it’s delivered, what stage organisations are at. The deeper question: has coaching changed how people lead, relate, and work? That’s the shift from coaching maturity to coaching culture.","When we say ‘coaching culture,’ what do we mean?","Select all that fit.",["programs|How organisations invest in coaching|Budgets, delivery, ROI","leadership|How leaders actually show up day to day|Ask or tell? Develop people?","norms|What’s considered normal behaviour|Feedback flowing? Reflection a habit?","system|How systems support it|Coaching woven into HR processes?","gap|The gap between spending and actually changing|Buy coaching but haven’t changed"]],
+["q5","","","Most powerful report headline?","Select all that appeal.",["gap|‘India invests in coaching — but hasn’t built coaching cultures’","inside|‘What coaching culture actually feels like from inside’","map|‘Where Indian organisations stand on the coaching journey’","surprise|‘The one thing that predicts coaching culture — not what you’d think’"]],
+["q6","","","Whose experience should the research reflect?","Select all that matter.",["chro|CHROs and HR leaders (already in study)","senior|Senior leaders who’ve been coached","mid|Mid-level managers — coaching AND coached","ground|People three levels down","coaches|External coaches across organisations"]],
+["q7","The Coaching Culture Model","We’re building a clear picture of what coaching culture looks like. This becomes Reflexion’s IP. The research tests and deepens it.","If you spent a day with a leader in a coaching culture, what would you see?","Select all essential behaviours.",["ask|They ask questions before giving answers","listen|They listen to understand, not just respond","empower|They let people decide instead of deciding for them","coached|They get coached themselves and are open about it","feedback|They give feedback in the moment","time|They carve out real time for development conversations"]],
+["q8","","","What everyday habits signal coaching culture across the organisation?","Select all.",["questions|People explore before prescribing — questions first","fb|Feedback happens in real time","reflect|Teams regularly pause to ask ‘what did we learn?’","challenge|People can push back without fear","own|People drive their own development"]],
+["q9","","","What unwritten rules does a coaching culture run on?","Select all.",["grow|‘People can change and grow’ — capability is built, not fixed","help|‘Asking for help is smart’ — coaching shows strength","trust|‘We trust people to figure it out’ — autonomy over control","fail|‘Mistakes are how we learn’ — failure doesn’t end careers","whole|‘Development is about the whole person’ — not just targets"]],
 ["q10","","","What conditions does the organisation need to provide?","Select all.",["budget|Real budget dedicated to coaching","hr|Coaching woven into performance and promotion","internal|Internal coaching capability, not just external","measure|Measurement that tracks behaviour change","reward|People who coach are recognised","walk|Senior leaders model it themselves","safety|Enough psychological safety for honest conversations","time|Leaders actually have time for development"]],
-["q11","","","How should we describe maturity stages?","Select all that appeal.",["four|Unaware \u2192 Exploring \u2192 Building \u2192 Living It","three|Spending \u2192 Doing \u2192 Being a Coaching Culture","arch|Types: \u2018The Buyer\u2019 / \u2018The Builder\u2019 / \u2018The Natural\u2019"]],
-["q12","","","Should the model acknowledge when coaching ISN\u2019T the answer?","",["yes|Yes \u2014 adds credibility","brief|Briefly \u2014 a short caveat","no|Stay positive \u2014 no caveats"]],
+["q11","","","How should we describe maturity stages?","Select all that appeal.",["four|Unaware → Exploring → Building → Living It","three|Spending → Doing → Being a Coaching Culture","arch|Types: ‘The Buyer’ / ‘The Builder’ / ‘The Natural’"]],
+["q12","","","Should the model acknowledge when coaching ISN’T the answer?","",["yes|Yes — adds credibility","brief|Briefly — a short caveat","no|Stay positive — no caveats"]],
 ["q13","","","Should the model vary by sector?","",["one|One model, adapt in application","flex|Same structure, sector-specific examples","diff|Different models per sector"]],
-["q14","Making the Research Stronger","We have 41 interviews and 250 survey respondents. How do we get the most from what we have?","How should we frame the survey data?","250 across 5 sectors \u2248 50 per sector.",["directional|Be upfront \u2014 numbers are indicative","pulse|Add a short follow-up survey to more people","qual_star|Lead with interview stories, numbers as support"]],
-["q15","","","How do we ensure findings reflect reality?","When you ask leaders \u2018do you coach?\u2019 most say yes. Their teams may disagree.",["multi|Include voices from further down","gap|Build \u2018what we intend vs what happens\u2019 into analysis","accept|Acknowledge as limitation, interpret carefully"]],
-["q16","","","Should we look for something unexpected?","",["hunt|Yes \u2014 actively look for a surprise finding","open|Stay open but don\u2019t force it","positive|Build a strong positive case"]],
-["q17","What We Build","What does the Coaching Culture project become for Reflexion?","How ambitious do we want to be?","This is the biggest strategic choice.",["launch|One-time launch \u2014 publish report, event, move on|Gets credibility. But it\u2019s a moment, not a movement.","project|Ongoing project \u2014 report + diagnostic + book + content|Builds IP over time. Requires sustained effort.","property|Build \u2018The State of Coaching Culture in India\u2019 \u2014 an annual benchmark|Like \u2018Best Places to Work\u2019 for coaching. Highest ambition. Multi-year commitment."]],
+["q14","Making the Research Stronger","We have 41 interviews and 250 survey respondents. How do we get the most from what we have?","How should we frame the survey data?","250 across 5 sectors ≈ 50 per sector.",["directional|Be upfront — numbers are indicative","pulse|Add a short follow-up survey to more people","qual_star|Lead with interview stories, numbers as support"]],
+["q15","","","How do we ensure findings reflect reality?","When you ask leaders ‘do you coach?’ most say yes. Their teams may disagree.",["multi|Include voices from further down","gap|Build ‘what we intend vs what happens’ into analysis","accept|Acknowledge as limitation, interpret carefully"]],
+["q16","","","Should we look for something unexpected?","",["hunt|Yes — actively look for a surprise finding","open|Stay open but don’t force it","positive|Build a strong positive case"]],
+["q17","What We Build","What does the Coaching Culture project become for Reflexion?","How ambitious do we want to be?","This is the biggest strategic choice.",["launch|One-time launch — publish report, event, move on|Gets credibility. But it’s a moment, not a movement.","project|Ongoing project — report + diagnostic + book + content|Builds IP over time. Requires sustained effort.","property|Build ‘The State of Coaching Culture in India’ — an annual benchmark|Like ‘Best Places to Work’ for coaching. Highest ambition. Multi-year commitment."]],
 ["q17b","","","If we build an annual property, what does it need?","Select all that feel necessary.",["maximise|Maximise publicity from THIS research as the foundation year","quant_invest|Commission a larger quant study (needs investment, gives statistical weight)","website|Create a dedicated website section","ongoing_survey|Run an ongoing survey orgs can take any time","assess_product|Evolve a paid assessment product","annual|Repeat the full study annually","rankings|Consider a ranking or certification","partner_prop|Partner with a media house to co-own the property"]],
-["q18","","","What should readers DO after the report?","Select all.",["understand|Understand the landscape","diagnose|Assess where their own organisation is","act|Know what to do next \u2014 stage-specific playbook"]],
+["q18","","","What should readers DO after the report?","Select all.",["understand|Understand the landscape","diagnose|Assess where their own organisation is","act|Know what to do next — stage-specific playbook"]],
 ["q19","","","The diagnostic product?","",["full|Full paid assessment from the start","lite|Free scan first, paid product later","later|Model first, product later"]],
 ["q20","","","The book by Urvashi and Suva?","Select all.",["stories|Real stories from inside organisations","indian|The Indian leadership context","ip|The Reflexion model as IP","all|All three combined"]],
-["q21","","","Audience and reach?","Select all.",["ceo|CEOs and business leaders","chro|CHROs and L&D leaders","both|Both \u2014 different versions for each","cadence_60|Release content every 2 months","cadence_q|Quarterly content","brand_first|Lead with reputation \u2014 open everything","funnel|Content \u2192 diagnostic \u2192 client conversation","product_rev|Diagnostic as standalone revenue product"]],
-["q23","Partnerships","Partnerships give reach and credibility fast. But they mean sharing credit and possibly sharing a stage with competitors.","Should we partner to amplify this work?","",["yes_big|Yes \u2014 essential for visibility","selective|Yes, but very selectively","solo|No \u2014 build our brand first"]],
+["q21","","","Audience and reach?","Select all.",["ceo|CEOs and business leaders","chro|CHROs and L&D leaders","both|Both — different versions for each","cadence_60|Release content every 2 months","cadence_q|Quarterly content","brand_first|Lead with reputation — open everything","funnel|Content → diagnostic → client conversation","product_rev|Diagnostic as standalone revenue product"]],
+["q23","Partnerships","Partnerships give reach and credibility fast. But they mean sharing credit and possibly sharing a stage with competitors.","Should we partner to amplify this work?","",["yes_big|Yes — essential for visibility","selective|Yes, but very selectively","solo|No — build our brand first"]],
 ["q24","","","Which types of partners add most value?","Select all.",["hr_body|HR bodies (NHRDN, SHRM)|Legitimacy, HR networks","icf|International Coach Federation|Global coaching credibility","media|Business media (ET, People Matters)|Reach, distribution","peer|Complementary firms (search, leadership dev)|Relationships, introductions","academic|Business schools|Academic credibility"]],
-["q25","","","Risk of partnering with complementary firms?","They bring relationships but may compete for clients.",["worth_it|Worth it \u2014 visibility outweighs overlap","case_by_case|Depends on the firm","avoid|Avoid \u2014 build our own reach","separate|Partner for research, keep product exclusively ours"]],
+["q25","","","Risk of partnering with complementary firms?","They bring relationships but may compete for clients.",["worth_it|Worth it — visibility outweighs overlap","case_by_case|Depends on the firm","avoid|Avoid — build our own reach","separate|Partner for research, keep product exclusively ours"]],
 ["q26","","","How do we protect ownership?","Select all.",["brand_lead|Reflexion always the lead brand","ip_own|Model and diagnostic 100% Reflexion IP","data_ours|All research data stays with us","contrib|Partners contribute distribution, not content"]]
 ];
 
@@ -185,10 +186,44 @@ function clearDraft(name){try{localStorage.removeItem(sk(name));}catch(e){}}
 function apiSave(cb){
   var url=DB+'/responses/'+S.w+'.json';
   fetch(url,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({a:S.a,n:S.n,at:new Date().toISOString()})})
-    .then(function(r){return r.json();}).then(function(){if(cb)cb(true);}).catch(function(){if(cb)cb(false);});
+    .then(function(r){
+      return r.text().then(function(t){
+        var d=null;try{d=t?JSON.parse(t):null;}catch(e){}
+        if(!r.ok || (d && d.error)){
+          var msg=(d&&d.error)?d.error:('HTTP '+r.status+(t?' — '+t.slice(0,200):''));
+          console.error('apiSave failed:',msg);
+          if(cb)cb(false,msg);
+          return;
+        }
+        if(cb)cb(true,null);
+      });
+    })
+    .catch(function(err){
+      console.error('apiSave network error:',err);
+      if(cb)cb(false,(err&&err.message)||'Network error');
+    });
 }
 function apiLoad(cb){
-  fetch(DB+'/responses.json').then(function(r){return r.json();}).then(function(d){ALL=d||{};if(cb)cb();}).catch(function(){ALL={};if(cb)cb();});
+  fetch(DB+'/responses.json')
+    .then(function(r){
+      return r.text().then(function(t){
+        var d=null;try{d=t?JSON.parse(t):null;}catch(e){}
+        if(!r.ok || (d && d.error)){
+          var msg=(d&&d.error)?d.error:('HTTP '+r.status+(t?' — '+t.slice(0,200):''));
+          console.error('apiLoad failed:',msg);
+          ALL={};LOAD_ERR=msg;
+          if(cb)cb();
+          return;
+        }
+        ALL=d||{};LOAD_ERR=null;
+        if(cb)cb();
+      });
+    })
+    .catch(function(err){
+      console.error('apiLoad network error:',err);
+      ALL={};LOAD_ERR=(err&&err.message)||'Network error';
+      if(cb)cb();
+    });
 }
 
 // ---- Router ----
@@ -201,12 +236,20 @@ function draw(){
 
 // ---- Landing ----
 function drawL(){
-  app.innerHTML='<div class="w"><div class="spin">Loading\u2026</div></div>';
+  app.innerHTML='<div class="w"><div class="spin">Loading…</div></div>';
   apiLoad(function(){
     var h='<div class="w">';
-    h+='<div class="brand">Reflexion \u00b7 Coaching Culture Project</div>';
+    h+='<div class="brand">Reflexion · Coaching Culture Project</div>';
     h+='<h1>Strategy <em>Builder</em></h1>';
-    h+='<p class="body">27 reflections across 7 sections \u2014 about 20 minutes. Complete independently, then see how the team aligns.</p>';
+    h+='<p class="body">27 reflections across 7 sections — about 20 minutes. Complete independently, then see how the team aligns.</p>';
+
+    if(LOAD_ERR){
+      h+='<div style="background:#ffe5e0;border:1px solid #d44;color:#8b0000;padding:12px 14px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.5">'+
+        '<div style="font-weight:700;margin-bottom:2px">Database not reachable.</div>'+
+        '<div style="font-family:monospace;font-size:12px;opacity:.8">'+eh(LOAD_ERR)+'</div>'+
+        '<div style="margin-top:6px">You can still fill out the form, but submissions may not save until this is fixed.</div>'+
+        '</div>';
+    }
 
     h+='<p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin:20px 0 8px">Select your name</p>';
     h+='<div class="pgrid">';
@@ -222,7 +265,7 @@ function drawL(){
         h+='<span style="font-size:10px;color:'+(act?'rgba(255,255,255,.7)':'#b8613e')+';font-weight:700;margin-left:auto">draft</span>';
       }
       if(svd){
-        h+='<span style="font-size:10px;color:'+(act?'rgba(255,255,255,.7)':'#2d9e5a')+';font-weight:700;margin-left:auto">\u2713 done</span>';
+        h+='<span style="font-size:10px;color:'+(act?'rgba(255,255,255,.7)':'#2d9e5a')+';font-weight:700;margin-left:auto">✓ done</span>';
       }
       h+='</button>';
     }
@@ -231,10 +274,10 @@ function drawL(){
     if(S.w){
       var serverDone=!!(ALL[S.w]&&ALL[S.w].at);
       if(serverDone){
-        h+='<div class="done-box"><p style="font-size:14px;font-weight:600;color:#1a6630">\u2713 Your responses are submitted</p><p style="font-size:13px;color:#5a8060;margin-top:4px">You can still review or update them.</p></div>';
+        h+='<div class="done-box"><p style="font-size:14px;font-weight:600;color:#1a6630">✓ Your responses are submitted</p><p style="font-size:13px;color:#5a8060;margin-top:4px">You can still review or update them.</p></div>';
         h+='<button class="btn-p" onclick="goForm()">Review my responses</button>';
       } else {
-        h+='<button class="btn-p" onclick="goForm()">'+(hasDraft(S.w)?'Continue my reflections \u2192':'Begin reflections \u2192')+'</button>';
+        h+='<button class="btn-p" onclick="goForm()">'+(hasDraft(S.w)?'Continue my reflections →':'Begin reflections →')+'</button>';
       }
     } else {
       h+='<p class="hint">Select your name to begin</p>';
@@ -242,7 +285,7 @@ function drawL(){
 
     h+='<div class="divider"></div>';
     var submitted=W.filter(function(n){return ALL[n]&&ALL[n].at;}).length;
-    h+='<button class="btn-s" onclick="S.v=\'dash\';draw()">View Dashboard ('+submitted+'/4 submitted) \u2192</button>';
+    h+='<button class="btn-s" onclick="S.v=\'dash\';draw()">View Dashboard ('+submitted+'/4 submitted) →</button>';
     h+='</div>';
     app.innerHTML=h;
   });
@@ -300,7 +343,7 @@ function drawF(){
     h+='</div>';
     if(S.n[id]!=null){
       h+='<div class="note-lbl">Your View</div>';
-      h+='<textarea class="note-ta" id="nt_'+id+'" onblur="sn(\''+id+'\')" rows="2" placeholder="Anything else on your mind\u2026">'+eh(S.n[id]||'')+'</textarea>';
+      h+='<textarea class="note-ta" id="nt_'+id+'" onblur="sn(\''+id+'\')" rows="2" placeholder="Anything else on your mind…">'+eh(S.n[id]||'')+'</textarea>';
     } else {
       h+='<button class="note-tog" onclick="opn(\''+id+'\')">+ Add a note</button>';
     }
@@ -308,12 +351,12 @@ function drawF(){
   }
 
   h+='<div class="nav">';
-  if(S.pg>0)h+='<button class="nav-back" onclick="gp('+(S.pg-1)+')">\u2190 Back</button>';
+  if(S.pg>0)h+='<button class="nav-back" onclick="gp('+(S.pg-1)+')">← Back</button>';
   h+='<div class="sp"></div>';
   if(S.pg<total-1){
-    h+='<button class="nav-next" onclick="gp('+(S.pg+1)+')">Next \u2192</button>';
+    h+='<button class="nav-next" onclick="gp('+(S.pg+1)+')">Next →</button>';
   } else {
-    h+='<button class="nav-next" onclick="fin()">Review & Submit \u2192</button>';
+    h+='<button class="nav-next" onclick="fin()">Review & Submit →</button>';
   }
   h+='</div></div>';
   app.innerHTML=h;
@@ -324,7 +367,7 @@ function drawD(){
   var cnt=0;for(var k in S.a){if(S.a[k]&&S.a[k].length>0)cnt++;}
   var total=Q.length;
   var h='<div class="w"><div class="brand">Reflexion</div><h1>Review & <em>Submit</em></h1>';
-  h+='<p class="body">You\u2019ve answered <b>'+cnt+' of '+total+' questions</b>. Submit to add your responses to the shared dashboard.</p>';
+  h+='<p class="body">You’ve answered <b>'+cnt+' of '+total+' questions</b>. Submit to add your responses to the shared dashboard.</p>';
 
   h+='<div class="card"><div class="card-title">Your completion by section</div>';
   for(var pi=0;pi<PAGES.length;pi++){
@@ -338,46 +381,62 @@ function drawD(){
   }
   h+='</div>';
 
-  h+='<div class="done-box"><div class="done-icon">\uD83C\uDFAF</div>';
+  h+='<div class="done-box"><div class="done-icon">🎯</div>';
   h+='<p style="font-size:15px;font-weight:600;color:#1a5a30;text-align:center;margin-bottom:6px">Ready to submit?</p>';
   h+='<p style="font-size:13px;color:#5a8060;text-align:center">Your responses will appear on the shared dashboard immediately.</p></div>';
-  h+='<button class="btn-a" id="subBtn" onclick="doSubmit()">Submit my responses \u2192</button>';
-  h+='<button class="btn-s" onclick="S.v=\'f\';S.pg=0;draw()">\u2190 Go back and review</button>';
+  h+='<button class="btn-a" id="subBtn" onclick="doSubmit()">Submit my responses →</button>';
+  h+='<button class="btn-s" onclick="S.v=\'f\';S.pg=0;draw()">← Go back and review</button>';
   h+='</div>';
   app.innerHTML=h;
 }
 
 function doSubmit(){
   var btn=document.getElementById('subBtn');
-  if(btn){btn.textContent='Saving\u2026';btn.disabled=true;}
-  apiSave(function(ok){
+  if(btn){btn.textContent='Saving…';btn.disabled=true;}
+  apiSave(function(ok,errMsg){
     if(ok){
       clearDraft(S.w);
       var h='<div class="w"><div style="text-align:center;padding:48px 0">';
-      h+='<div style="font-size:56px;margin-bottom:16px">\u2705</div>';
+      h+='<div style="font-size:56px;margin-bottom:16px">✅</div>';
       h+='<h1 style="font-size:24px;margin-bottom:8px">Submitted!</h1>';
       h+='<p class="body" style="text-align:center">Your responses are on the dashboard.</p></div>';
-      h+='<button class="btn-p" onclick="S.v=\'dash\';draw()">View Dashboard \u2192</button>';
-      h+='<button class="btn-s" onclick="S.v=\'l\';S.w=null;draw()">\u2190 Home</button></div>';
+      h+='<button class="btn-p" onclick="S.v=\'dash\';draw()">View Dashboard →</button>';
+      h+='<button class="btn-s" onclick="S.v=\'l\';S.w=null;draw()">← Home</button></div>';
       app.innerHTML=h;
     } else {
       var btn2=document.getElementById('subBtn');
-      if(btn2){btn2.textContent='Submit my responses \u2192';btn2.disabled=false;}
-      alert('Could not reach the server. Please check your connection and try again.');
+      if(btn2){btn2.textContent='Submit my responses →';btn2.disabled=false;}
+      var existing=document.getElementById('saveErrBox');
+      if(existing&&existing.parentNode)existing.parentNode.removeChild(existing);
+      var errBox=document.createElement('div');
+      errBox.id='saveErrBox';
+      errBox.style.cssText='background:#ffe5e0;border:1px solid #d44;color:#8b0000;padding:14px 16px;border-radius:8px;margin:14px 0;font-size:13px;line-height:1.5';
+      errBox.innerHTML='<div style="font-weight:700;margin-bottom:4px">Submit failed — your responses were NOT saved.</div>'+
+        (errMsg?'<div style="font-family:monospace;font-size:12px;margin-top:6px;opacity:.8">'+eh(errMsg)+'</div>':'')+
+        '<div style="margin-top:8px">Please try again. If this keeps happening, ping Ajay — the database may be misconfigured.</div>';
+      if(btn2&&btn2.parentNode)btn2.parentNode.insertBefore(errBox,btn2);
     }
   });
 }
 
 // ---- Dashboard ----
 function drawDash(){
-  app.innerHTML='<div class="w"><div class="spin">Loading dashboard\u2026</div></div>';
+  app.innerHTML='<div class="w"><div class="spin">Loading dashboard…</div></div>';
   apiLoad(function(){
     var sub=W.filter(function(n){return ALL[n]&&ALL[n].at;});
     var n=sub.length;
 
     var h='<div class="w">';
-    h+='<div class="brand">Reflexion \u00b7 Coaching Culture Project</div>';
+    h+='<div class="brand">Reflexion · Coaching Culture Project</div>';
     h+='<h1>Alignment <em>Dashboard</em></h1>';
+
+    if(LOAD_ERR){
+      h+='<div style="background:#ffe5e0;border:1px solid #d44;color:#8b0000;padding:12px 14px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.5">'+
+        '<div style="font-weight:700;margin-bottom:2px">Couldn’t load responses from the database.</div>'+
+        '<div style="font-family:monospace;font-size:12px;opacity:.8">'+eh(LOAD_ERR)+'</div>'+
+        '<div style="margin-top:6px">What you see below may be empty or stale. Try Refresh, or check Firebase rules.</div>'+
+        '</div>';
+    }
 
     // Status row
     h+='<div class="dash-status">';
@@ -392,7 +451,7 @@ function drawDash(){
     if(n===0){
       h+='<p class="body">No responses yet. Partners will appear here as they submit.</p>';
     } else {
-      h+='<p class="body"><b>'+n+' of 4</b> partner'+(n===1?'':'s')+' submitted'+(n<4?' \u2014 dashboard updates as more come in.':'.')+'</p>';
+      h+='<p class="body"><b>'+n+' of 4</b> partner'+(n===1?'':'s')+' submitted'+(n<4?' — dashboard updates as more come in.':'.')+'</p>';
 
       // Draft Coaching Culture Model
       h+=buildModel(sub);
@@ -408,7 +467,7 @@ function drawDash(){
 
     h+='<div class="divider"></div>';
     h+='<button class="btn-s" onclick="apiLoad(function(){S.v=\'dash\';draw();})">&#8635; Refresh</button>';
-    h+='<button class="btn-s" onclick="S.v=\'l\';draw()">\u2190 Back to home</button>';
+    h+='<button class="btn-s" onclick="S.v=\'l\';draw()">← Back to home</button>';
     h+='</div>';
     app.innerHTML=h;
   });
@@ -419,10 +478,10 @@ function buildModel(sub){
   if(n<2)return'';
   var threshold=n>=3?3:2;
   var MODEL=[
-    {label:"The Leader \u2014 how they show up",q:"q7"},
-    {label:"The Team \u2014 everyday habits",q:"q8"},
-    {label:"The Culture \u2014 unwritten rules",q:"q9"},
-    {label:"The Organisation \u2014 conditions",q:"q10"}
+    {label:"The Leader — how they show up",q:"q7"},
+    {label:"The Team — everyday habits",q:"q8"},
+    {label:"The Culture — unwritten rules",q:"q9"},
+    {label:"The Organisation — conditions",q:"q10"}
   ];
 
   var modelHTML='';
@@ -441,7 +500,7 @@ function buildModel(sub){
     }
     if(items.length>0){
       modelHTML+='<div class="model-card"><div class="model-head">'+m.label+'</div>';
-      for(var ii=0;ii<items.length;ii++)modelHTML+='<div class="model-item"><span class="model-chk">\u2713</span>'+items[ii]+'</div>';
+      for(var ii=0;ii<items.length;ii++)modelHTML+='<div class="model-item"><span class="model-chk">✓</span>'+items[ii]+'</div>';
       modelHTML+='</div>';
     }
   }
@@ -485,7 +544,7 @@ function buildGaps(sub){
   if(gaps.length===0)return'';
   var h='<div><div class="sec-div"></div>';
   h+='<div class="sec-h">Where You\'re Split</div>';
-  h+='<p class="body">These are the clearest differences \u2014 worth a focused conversation.</p>';
+  h+='<p class="body">These are the clearest differences — worth a focused conversation.</p>';
   for(var gi=0;gi<gaps.length;gi++){
     var gap=gaps[gi];
     h+='<div class="gap-card"><div class="gap-q">'+gap.q[3]+'</div><div class="gap-rows">';
